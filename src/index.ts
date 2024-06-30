@@ -14,6 +14,7 @@ async function startApolloServer(typeDefs: DocumentNode | string, resolvers: IRe
     typeDefs,
     resolvers,
     csrfPrevention: true,
+    introspection: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   })
