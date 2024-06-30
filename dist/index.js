@@ -25,6 +25,7 @@ function startApolloServer(typeDefs, resolvers) {
             typeDefs,
             resolvers,
             csrfPrevention: true,
+            introspection: true,
             cache: 'bounded',
             plugins: [(0, apollo_server_core_1.ApolloServerPluginDrainHttpServer)({ httpServer }), (0, apollo_server_core_1.ApolloServerPluginLandingPageLocalDefault)({ embed: true })],
         });
