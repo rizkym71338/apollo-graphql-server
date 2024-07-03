@@ -12,41 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const http_1 = __importDefault(require("http"));
+const server_1 = require("@apollo/server");
+const express4_1 = require("@apollo/server/express4");
+const drainHttpServer_1 = require("@apollo/server/plugin/drainHttpServer");
 const express_1 = __importDefault(require("express"));
-const apollo_server_express_1 = require("apollo-server-express");
-const apollo_server_core_1 = require("apollo-server-core");
-const db_1 = require("./db");
-function startApolloServer(typeDefs, resolvers) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const app = (0, express_1.default)();
-        const httpServer = http_1.default.createServer(app);
-        const server = new apollo_server_express_1.ApolloServer({
-            typeDefs,
-            resolvers,
-            csrfPrevention: true,
-            introspection: true,
-            cache: 'bounded',
-            plugins: [(0, apollo_server_core_1.ApolloServerPluginDrainHttpServer)({ httpServer }), (0, apollo_server_core_1.ApolloServerPluginLandingPageLocalDefault)({ embed: true })],
-        });
-        yield server.start();
-        server.applyMiddleware({ app });
-        yield new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-        console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+const http_1 = __importDefault(require("http"));
+const cors_1 = __importDefault(require("cors"));
+const schema_1 = require("./schema");
+const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
+    const app = (0, express_1.default)();
+    const httpServer = http_1.default.createServer(app);
+    const server = new server_1.ApolloServer({
+        typeDefs: schema_1.typeDefs,
+        resolvers: schema_1.resolvers,
+        plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
     });
-}
-const typeDefs = `#graphql
-  type Book {
-    title: String!
-  	author: String!
-	}
-  type Query {
-    books: [Book!]
-  }
-`;
-const resolvers = {
-    Query: {
-        books: () => db_1.books,
-    },
-};
-startApolloServer(typeDefs, resolvers);
+    yield server.start();
+    app.use('/graphql', (0, cors_1.default)(), express_1.default.json(), (0, express4_1.expressMiddleware)(server, {
+        context: (_a) => __awaiter(void 0, [_a], void 0, function* ({ req }) { return ({ token: req.headers.token }); }),
+    }));
+    yield new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+    console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+});
+startServer();

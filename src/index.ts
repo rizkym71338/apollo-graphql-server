@@ -1,43 +1,41 @@
-import http from 'http'
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import express from 'express'
-import { ApolloServer } from 'apollo-server-express'
-import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
-import { IResolvers } from '@graphql-tools/utils'
-import { DocumentNode } from 'graphql'
+import http from 'http'
+import cors from 'cors'
 
-import { books } from './db'
+import { typeDefs, resolvers } from './schema'
 
-async function startApolloServer(typeDefs: DocumentNode | string, resolvers: IResolvers) {
+interface MyContext {
+  token?: string
+}
+
+const startServer = async () => {
   const app = express()
+
   const httpServer = http.createServer(app)
-  const server = new ApolloServer({
+
+  const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
-    csrfPrevention: true,
-    introspection: true,
-    cache: 'bounded',
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   })
+
   await server.start()
-  server.applyMiddleware({ app })
+
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>(),
+    express.json(),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    })
+  )
+
   await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve))
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`)
 }
 
-const typeDefs = `#graphql
-  type Book {
-    title: String!
-  	author: String!
-	}
-  type Query {
-    books: [Book!]
-  }
-`
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-}
-
-startApolloServer(typeDefs, resolvers)
+startServer()
