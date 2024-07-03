@@ -11,9 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("@apollo/server");
 const standalone_1 = require("@apollo/server/standalone");
+const default_1 = require("@apollo/server/plugin/landingPage/default");
 const schema_1 = require("./schema");
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
-    const server = new server_1.ApolloServer({ typeDefs: schema_1.typeDefs, resolvers: schema_1.resolvers, csrfPrevention: true, introspection: true, cache: 'bounded' });
+    const server = new server_1.ApolloServer({
+        typeDefs: schema_1.typeDefs,
+        resolvers: schema_1.resolvers,
+        csrfPrevention: true,
+        introspection: true,
+        cache: 'bounded',
+        plugins: [(0, default_1.ApolloServerPluginLandingPageLocalDefault)({ embed: true })],
+    });
     const { url } = yield (0, standalone_1.startStandaloneServer)(server, { listen: { port: 4000 } });
     console.log(`🚀  Server ready at ${url}`);
 });
