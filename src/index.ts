@@ -5,14 +5,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { typeDefs, resolvers } from './schema'
 
 const startServer = async () => {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    csrfPrevention: true,
-    introspection: true,
-    cache: 'bounded',
-    plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
-  })
+  const server = new ApolloServer({ typeDefs, resolvers, plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })] })
   const { url } = await startStandaloneServer(server, { listen: { port: 4000 } })
   console.log(`🚀  Server ready at ${url}`)
 }
