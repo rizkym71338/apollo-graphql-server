@@ -25,10 +25,23 @@ export const typeDefs = `#graphql
     lendings: [Lending]
   }
 
+  input MemberInput {
+    name: String
+    email: String
+    verified: Boolean
+  }
+
   type Lending {
     id: ID
     book: Book
     member: Member
+    borrowedAt: String
+    returnedAt: String
+  }
+
+  input LendingInput {
+    bookId: ID
+    memberId: ID
     borrowedAt: String
     returnedAt: String
   }
@@ -48,5 +61,13 @@ export const typeDefs = `#graphql
     createBook(input: BookInput): Book
     updateBook(id: ID, input: BookInput): Book
     deleteBook(id: ID): Book
+
+    createMember(input: MemberInput): Member
+    updateMember(id: ID, input: MemberInput): Member
+    deleteMember(id: ID): Member
+
+    createLending(input: LendingInput): Lending
+    updateLending(id: ID, input: LendingInput): Lending
+    deleteLending(id: ID): Lending
   }
 `

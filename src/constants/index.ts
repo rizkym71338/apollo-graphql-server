@@ -7,7 +7,7 @@ export const books = [
 export const members = [
   { id: 'member-1', name: 'Hirusha', email: 'h@h.com', verified: true },
   { id: 'member-2', name: 'Hira', email: 'h@h.com', verified: false },
-  { id: 'member-3', name: 'Hira', email: 'h@h.com', verified: true },
+  { id: 'member-3', name: 'Mira', email: 'h@h.com', verified: true },
 ]
 
 export const lendings = [

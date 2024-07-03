@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.prisma=void 0;const e=require("@prisma/client");exports.prisma=new e.PrismaClient;
