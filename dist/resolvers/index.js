@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.resolvers=void 0;const e=require("./query-resolver"),r=require("./mutation-resolver"),o=require("./book-resolver"),s=require("./member-resolver"),l=require("./lending-resolver");exports.resolvers={Query:e.queryResolver,Mutation:r.mutationResolver,Book:o.bookResolver,Member:s.memberResolver,Lending:l.lendingResolver};

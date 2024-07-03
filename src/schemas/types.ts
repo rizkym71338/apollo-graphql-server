@@ -7,8 +7,22 @@ export interface Book {
   publishedAt: string
 }
 
+export interface BookInput {
+  title: string
+  author: string
+  category: string
+  total: number
+  publishedAt: string
+}
+
 export interface Member {
   id: string
+  name: string
+  email: string
+  verified: boolean
+}
+
+export interface MemberInput {
   name: string
   email: string
   verified: boolean
@@ -22,10 +36,9 @@ export interface Lending {
   returnedAt: string
 }
 
-export interface BookInput {
-  title: string
-  author: string
-  category: string
-  total: number
-  publishedAt: string
+export interface LendingInput {
+  bookId: string
+  memberId: string
+  borrowedAt: string
+  returnedAt: string
 }
