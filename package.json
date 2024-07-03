@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && minify-all-js ./dist -j -m -M -p -a",
     "start": "node ./dist/index.js",
     "dev": "nodemon ./src/index.ts"
   },
@@ -16,6 +16,7 @@
     "graphql": "^16.9.0"
   },
   "devDependencies": {
+    "minify-all-js": "^0.1.9",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"

@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.ENV=exports.env=void 0;const e=e=>process.env[e];exports.env=e,exports.ENV={PORT:Number((0,exports.env)("PORT"))||4e3};
