@@ -10,35 +10,48 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.queryResolver = void 0;
+const libs_1 = require("../libs");
 const services_1 = require("../services");
 exports.queryResolver = {
-    books() {
-        return __awaiter(this, void 0, void 0, function* () {
+    books(_1, __1, _a) {
+        return __awaiter(this, arguments, void 0, function* (_, __, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.bookService.getAllBook();
         });
     },
-    book(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    book(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.bookService.getBook(id);
         });
     },
-    members() {
-        return __awaiter(this, void 0, void 0, function* () {
+    members(_1, __1, _a) {
+        return __awaiter(this, arguments, void 0, function* (_, __, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.memberService.getAllMember();
         });
     },
-    member(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    member(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.memberService.getMember(id);
         });
     },
-    lendings() {
-        return __awaiter(this, void 0, void 0, function* () {
+    lendings(_1, __1, _a) {
+        return __awaiter(this, arguments, void 0, function* (_, __, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.lendingService.getAllLending();
         });
     },
-    lending(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    lending(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.lendingService.getLending(id);
         });
     },

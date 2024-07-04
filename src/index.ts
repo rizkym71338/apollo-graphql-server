@@ -10,4 +10,10 @@ const plugins = [ApolloServerPluginLandingPageLocalDefault({ embed: true })]
 
 const server = new ApolloServer({ typeDefs, resolvers, introspection: true, plugins })
 
-startStandaloneServer(server, { listen: { port: ENV.PORT } }).then(({ url }) => console.log(`🚀  Server ready at ${url}`))
+const context = async ({ req }: any) => ({ token: req.headers.authorization || '' })
+
+const listen = { port: ENV.PORT }
+
+const callback = ({ url }: any) => console.log(`🚀  Server ready at ${url}`)
+
+startStandaloneServer(server, { context, listen }).then(callback)

@@ -10,50 +10,69 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mutationResolver = void 0;
+const libs_1 = require("../libs");
 const services_1 = require("../services");
 exports.mutationResolver = {
-    createBook(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { input }) {
+    createBook(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.bookService.createBook(input);
         });
     },
-    updateBook(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id, input }) {
+    updateBook(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id, input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.bookService.updateBook(id, input);
         });
     },
-    deleteBook(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    deleteBook(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.bookService.deleteBook(id);
         });
     },
-    createMember(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { input }) {
+    createMember(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.memberService.createMember(input);
         });
     },
-    updateMember(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id, input }) {
+    updateMember(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id, input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.memberService.updateMember(id, input);
         });
     },
-    deleteMember(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    deleteMember(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.memberService.deleteMember(id);
         });
     },
-    createLending(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { input }) {
+    createLending(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.lendingService.createLending(input);
         });
     },
-    updateLending(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id, input }) {
+    updateLending(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id, input }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.lendingService.updateLending(id, input);
         });
     },
-    deleteLending(_1, _a) {
-        return __awaiter(this, arguments, void 0, function* (_, { id }) {
+    deleteLending(_1, _a, _b) {
+        return __awaiter(this, arguments, void 0, function* (_, { id }, { token }) {
+            if (token !== libs_1.ENV.SECRET_TOKEN)
+                throw new libs_1.UnauthenticatedError('Unauthenticated');
             return yield services_1.lendingService.deleteLending(id);
         });
     },
