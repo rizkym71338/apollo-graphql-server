@@ -1,4 +1,4 @@
-import { BookInput, LendingInput, MemberInput } from '../schemas/types'
+import { BookInput, LendingInput, MemberInput } from '../types'
 import { bookService, lendingService, memberService } from '../services'
 
 export const mutationResolver = {

@@ -1,5 +1,3 @@
-import { bookService, lendingService, memberService } from '../services'
-import { Book, Lending, Member } from '../schemas/types'
 import { queryResolver } from './query-resolver'
 import { mutationResolver } from './mutation-resolver'
 import { bookResolver } from './book-resolver'

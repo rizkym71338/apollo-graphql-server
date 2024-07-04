@@ -1,4 +1,4 @@
-import { Member } from '../schemas/types'
+import { Member } from '../types'
 import { lendingService } from '../services'
 
 export const memberResolver = {

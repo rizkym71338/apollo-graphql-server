@@ -5,6 +5,7 @@ export interface Book {
   category: string
   total: number
   publishedAt: string
+  lendings: Lending[]
 }
 
 export interface BookInput {
@@ -20,6 +21,7 @@ export interface Member {
   name: string
   email: string
   verified: boolean
+  lendings: Lending[]
 }
 
 export interface MemberInput {

@@ -1,5 +1,5 @@
 import { prisma } from '../libs'
-import { LendingInput } from '../schemas/types'
+import { LendingInput } from '../types'
 
 export const lendingService = {
   async getAllLending() {

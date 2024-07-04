@@ -1,4 +1,4 @@
-import { Lending } from '../schemas/types'
+import { Lending } from '../types'
 import { bookService, memberService } from '../services'
 
 export const lendingResolver = {

@@ -1,5 +1,5 @@
 import { prisma } from '../libs'
-import { BookInput } from '../schemas/types'
+import { BookInput } from '../types'
 
 export const bookService = {
   async getAllBook() {

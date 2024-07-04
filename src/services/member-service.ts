@@ -1,5 +1,5 @@
 import { prisma } from '../libs'
-import { MemberInput } from '../schemas/types'
+import { MemberInput } from '../types'
 
 export const memberService = {
   async getAllMember() {
