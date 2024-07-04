@@ -1,12 +1,10 @@
-import { readFileSync } from 'fs'
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
 
 import { resolvers } from './resolvers'
+import { typeDefs } from './schemas'
 import { ENV } from './libs'
-
-const typeDefs = readFileSync('./src/schema.graphql', { encoding: 'utf-8' })
 
 const plugins = [ApolloServerPluginLandingPageLocalDefault({ embed: true })]
 
