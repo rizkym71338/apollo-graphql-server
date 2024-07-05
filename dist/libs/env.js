@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ENV = exports.env = void 0;
-const env = (key) => process.env[key] || '';
-exports.env = env;
+exports.ENV = void 0;
+require("dotenv/config");
 exports.ENV = {
-    PORT: Number((0, exports.env)('PORT')) || 4000,
-    DATABASE_URL: (0, exports.env)('DATABASE_URL'),
-    SECRET_TOKEN: (0, exports.env)('SECRET_TOKEN'),
+    NODE_ENV: process.env.NODE_ENV,
+    IS_PRODUCTION: process.env.NODE_ENV === 'production',
+    PORT: Number(process.env.PORT) || 4000,
+    DATABASE_URL: process.env.DATABASE_URL,
+    SECRET_TOKEN: process.env.SECRET_TOKEN,
 };

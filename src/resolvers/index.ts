@@ -1,7 +1,6 @@
-import { queryResolver } from './query-resolver'
+import { permissionResolver } from './permission-resolver'
 import { mutationResolver } from './mutation-resolver'
-import { bookResolver } from './book-resolver'
-import { memberResolver } from './member-resolver'
-import { lendingResolver } from './lending-resolver'
+import { queryResolver } from './query-resolver'
+import { roleResolver } from './role-resolver'
 
-export const resolvers = { Query: queryResolver, Mutation: mutationResolver, Book: bookResolver, Member: memberResolver, Lending: lendingResolver }
+export const resolvers = { Query: queryResolver, Mutation: mutationResolver, Role: roleResolver, Permission: permissionResolver }

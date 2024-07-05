@@ -9,42 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.lendingService = void 0;
+exports.roleService = void 0;
 const libs_1 = require("../libs");
-exports.lendingService = {
-    getAllLending() {
+exports.roleService = {
+    getAllRole() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.role.findMany({ orderBy: { id: 'desc' } });
         });
     },
-    getLending(id) {
+    getRole(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.findUnique({ where: { id } });
+            return yield libs_1.prisma.role.findUnique({ where: { id } });
         });
     },
-    getLendingsByBookId(bookId) {
+    getRoleByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.findMany({ where: { bookId }, orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.role.findFirst({ where: { name } });
         });
     },
-    getLendingsByMemberId(memberId) {
+    createRole(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.findMany({ where: { memberId }, orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.role.create({ data });
         });
     },
-    createLending(data) {
+    updateRole(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.create({ data });
+            return yield libs_1.prisma.role.update({ where: { id }, data });
         });
     },
-    updateLending(id, data) {
+    deleteRole(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.update({ where: { id }, data });
-        });
-    },
-    deleteLending(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.lending.delete({ where: { id } });
+            return yield libs_1.prisma.role.delete({ where: { id } });
         });
     },
 };

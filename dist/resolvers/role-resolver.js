@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bookResolver = void 0;
+exports.roleResolver = void 0;
 const services_1 = require("../services");
-exports.bookResolver = {
-    lendings(_a) {
-        return __awaiter(this, arguments, void 0, function* ({ id }) {
-            return yield services_1.lendingService.getLendingsByBookId(id);
+exports.roleResolver = {
+    permissions(role) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield services_1.rolePermissionService.getPermissionsByRoleId(role.id);
         });
     },
 };

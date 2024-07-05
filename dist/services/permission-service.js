@@ -9,32 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.memberService = void 0;
+exports.permissionService = void 0;
 const libs_1 = require("../libs");
-exports.memberService = {
-    getAllMember() {
+exports.permissionService = {
+    getAllPermission() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.member.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.permission.findMany({ orderBy: { id: 'desc' } });
         });
     },
-    getMember(id) {
+    getPermission(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.member.findUnique({ where: { id } });
+            return yield libs_1.prisma.permission.findUnique({ where: { id } });
         });
     },
-    createMember(data) {
+    getPermissionByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.member.create({ data });
+            return yield libs_1.prisma.permission.findFirst({ where: { name } });
         });
     },
-    updateMember(id, data) {
+    createPermission(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.member.update({ where: { id }, data });
+            return yield libs_1.prisma.permission.create({ data });
         });
     },
-    deleteMember(id) {
+    updatePermission(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.member.delete({ where: { id } });
+            return yield libs_1.prisma.permission.update({ where: { id }, data });
+        });
+    },
+    deletePermission(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield libs_1.prisma.permission.delete({ where: { id } });
         });
     },
 };

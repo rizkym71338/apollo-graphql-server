@@ -1,46 +1,8 @@
-export interface Book {
-  id: string
-  title: string
-  author: string
-  category: string
-  total: number
-  publishedAt: string
-  lendings: Lending[]
-}
-
-export interface BookInput {
-  title: string
-  author: string
-  category: string
-  total: number
-  publishedAt: string
-}
-
-export interface Member {
-  id: string
+export interface PermissionInput {
   name: string
-  email: string
-  verified: boolean
-  lendings: Lending[]
 }
 
-export interface MemberInput {
+export interface RoleInput {
   name: string
-  email: string
-  verified: boolean
-}
-
-export interface Lending {
-  id: string
-  bookId: string
-  memberId: string
-  borrowedAt: string
-  returnedAt: string
-}
-
-export interface LendingInput {
-  bookId: string
-  memberId: string
-  borrowedAt: string
-  returnedAt: string
+  permissionIds: string[]
 }

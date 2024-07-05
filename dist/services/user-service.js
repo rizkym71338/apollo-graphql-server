@@ -9,32 +9,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bookService = void 0;
+exports.userService = void 0;
 const libs_1 = require("../libs");
-exports.bookService = {
-    getAllBook() {
+exports.userService = {
+    getAllUser() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.book.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.user.findMany({ orderBy: { id: 'desc' } });
         });
     },
-    getBook(id) {
+    getUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.book.findUnique({ where: { id } });
+            return yield libs_1.prisma.user.findUnique({ where: { id } });
         });
     },
-    createBook(data) {
+    createUser(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.book.create({ data });
+            return yield libs_1.prisma.user.create({ data });
         });
     },
-    updateBook(id, data) {
+    updateUser(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.book.update({ where: { id }, data });
+            return yield libs_1.prisma.user.update({ where: { id }, data });
         });
     },
-    deleteBook(id) {
+    deleteUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.book.delete({ where: { id } });
+            return yield libs_1.prisma.user.delete({ where: { id } });
         });
     },
 };

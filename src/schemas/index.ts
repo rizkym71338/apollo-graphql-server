@@ -1,73 +1,69 @@
 export const typeDefs = `#graphql
-  type Book {
+  type User {
     id: ID
-    title: String
-    author: String
-    category: String
-    total: Int
-    publishedAt: String
-    lendings: [Lending]
+    email: String
+    name: String
+    password: String
+
+    roleId: ID
+    roles: [Role]
+
+    createdAt: String
+    updatedAt: String
   }
 
-  input BookInput {
-    title: String
-    author: String
-    category: String
-    total: Int
-    publishedAt: String
+  input UserInput {
+    email: String!
+    name: String!
+    password: String!
+    roleId: ID!
   }
 
-  type Member {
+  type Role {
     id: ID
     name: String
-    email: String
-    verified: Boolean
-    lendings: [Lending]
+
+    users: [User]
+    permissions: [Permission]
+
+    createdAt: String
+    updatedAt: String
   }
 
-  input MemberInput {
-    name: String
-    email: String
-    verified: Boolean
+  input RoleInput {
+    name: String!
+    permissionIds: [ID!]!
   }
 
-  type Lending {
+  type Permission {
     id: ID
-    book: Book
-    member: Member
-    borrowedAt: String
-    returnedAt: String
+    name: String
+
+    roles: [Role]
+
+    createdAt: String
+    updatedAt: String
   }
 
-  input LendingInput {
-    bookId: ID
-    memberId: ID
-    borrowedAt: String
-    returnedAt: String
+  input PermissionInput {
+    name: String!
   }
 
   type Query {
-    books: [Book]
-    book(id: ID): Book
+    permissions: [Permission]
+    permission(id: ID): Permission
 
-    members: [Member]
-    member(id: ID): Member
-
-    lendings: [Lending]
-    lending(id: ID): Lending
+    roles: [Role]
+    role(id: ID): Role
   }
 
   type Mutation {
-    createBook(input: BookInput): Book
-    updateBook(id: ID, input: BookInput): Book
-    deleteBook(id: ID): Book
+    createPermission(input: PermissionInput!): Permission
+    updatePermission(id: ID!, input: PermissionInput!): Permission
+    deletePermission(id: ID!): Permission
 
-    createMember(input: MemberInput): Member
-    updateMember(id: ID, input: MemberInput): Member
-    deleteMember(id: ID): Member
-
-    createLending(input: LendingInput): Lending
-    updateLending(id: ID, input: LendingInput): Lending
-    deleteLending(id: ID): Lending
+    createRole(input: RoleInput!): Role
+    updateRole(id: ID!, input: RoleInput!): Role
+    deleteRole(id: ID!): Role
   }
 `
