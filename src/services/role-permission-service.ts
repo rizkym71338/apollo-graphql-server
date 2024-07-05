@@ -15,13 +15,13 @@ export const rolePermissionService = {
 
   async getPermissionsByRoleId(roleId: string) {
     return await prisma.rolePermission
-      .findMany({ where: { roleId }, include: { permission: true } })
+      .findMany({ where: { roleId }, include: { permission: true }, orderBy: { permission: { createdAt: 'desc' } } })
       .then((rolePermissions) => rolePermissions.map(({ permission }) => permission))
   },
 
   async getRolesByPermissionId(permissionId: string) {
     return await prisma.rolePermission
-      .findMany({ where: { permissionId }, include: { role: true } })
+      .findMany({ where: { permissionId }, include: { role: true }, orderBy: { role: { createdAt: 'desc' } } })
       .then((rolePermissions) => rolePermissions.map(({ role }) => role))
   },
 

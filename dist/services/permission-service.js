@@ -14,7 +14,7 @@ const libs_1 = require("../libs");
 exports.permissionService = {
     getAllPermission() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.permission.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.permission.findMany({ orderBy: { createdAt: 'desc' } });
         });
     },
     getPermission(id) {

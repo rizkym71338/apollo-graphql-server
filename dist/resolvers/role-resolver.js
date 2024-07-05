@@ -12,9 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.roleResolver = void 0;
 const services_1 = require("../services");
 exports.roleResolver = {
-    permissions(role) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield services_1.rolePermissionService.getPermissionsByRoleId(role.id);
+    permissions(_a) {
+        return __awaiter(this, arguments, void 0, function* ({ id }) {
+            return yield services_1.rolePermissionService.getPermissionsByRoleId(id);
+        });
+    },
+    users(_a) {
+        return __awaiter(this, arguments, void 0, function* ({ id }) {
+            return yield services_1.userService.getUsersByRoleId(id);
         });
     },
 };

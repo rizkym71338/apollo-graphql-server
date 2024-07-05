@@ -30,14 +30,14 @@ exports.rolePermissionService = {
     getPermissionsByRoleId(roleId) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield libs_1.prisma.rolePermission
-                .findMany({ where: { roleId }, include: { permission: true } })
+                .findMany({ where: { roleId }, include: { permission: true }, orderBy: { permission: { createdAt: 'desc' } } })
                 .then((rolePermissions) => rolePermissions.map(({ permission }) => permission));
         });
     },
     getRolesByPermissionId(permissionId) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield libs_1.prisma.rolePermission
-                .findMany({ where: { permissionId }, include: { role: true } })
+                .findMany({ where: { permissionId }, include: { role: true }, orderBy: { role: { createdAt: 'desc' } } })
                 .then((rolePermissions) => rolePermissions.map(({ role }) => role));
         });
     },

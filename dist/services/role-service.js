@@ -14,7 +14,7 @@ const libs_1 = require("../libs");
 exports.roleService = {
     getAllRole() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.role.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.role.findMany({ orderBy: { createdAt: 'desc' } });
         });
     },
     getRole(id) {

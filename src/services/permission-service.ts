@@ -4,7 +4,7 @@ import { prisma } from '../libs'
 
 export const permissionService = {
   async getAllPermission() {
-    return await prisma.permission.findMany({ orderBy: { id: 'desc' } })
+    return await prisma.permission.findMany({ orderBy: { createdAt: 'desc' } })
   },
 
   async getPermission(id: string) {

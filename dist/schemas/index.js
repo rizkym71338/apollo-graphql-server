@@ -9,7 +9,7 @@ exports.typeDefs = `#graphql
     password: String
 
     roleId: ID
-    roles: [Role]
+    role: Role
 
     createdAt: String
     updatedAt: String
@@ -54,10 +54,13 @@ exports.typeDefs = `#graphql
 
   type Query {
     permissions: [Permission]
-    permission(id: ID): Permission
+    permission(id: ID!): Permission
 
     roles: [Role]
-    role(id: ID): Role
+    role(id: ID!): Role
+
+    users: [User]
+    user(id: ID!): User
   }
 
   type Mutation {
@@ -68,5 +71,9 @@ exports.typeDefs = `#graphql
     createRole(input: RoleInput!): Role
     updateRole(id: ID!, input: RoleInput!): Role
     deleteRole(id: ID!): Role
+
+    createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): User
   }
 `;

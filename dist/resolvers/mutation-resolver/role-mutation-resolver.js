@@ -56,6 +56,9 @@ exports.roleMutationResolver = {
             const existingRole = yield services_1.roleService.getRole(id);
             if (!existingRole)
                 throw new libs_1.NotFoundError(`Role with id ${id} not found`);
+            const userWithThisRole = yield services_1.userService.getUserByRoleId(id);
+            if (userWithThisRole)
+                throw new libs_1.BadRequestError(`Role with id ${id} is still in use by user`);
             yield services_1.rolePermissionService.deleteRoleFromAllPermission(id);
             return yield services_1.roleService.deleteRole(id);
         });

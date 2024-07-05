@@ -14,12 +14,27 @@ const libs_1 = require("../libs");
 exports.userService = {
     getAllUser() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield libs_1.prisma.user.findMany({ orderBy: { id: 'desc' } });
+            return yield libs_1.prisma.user.findMany({ orderBy: { createdAt: 'desc' } });
+        });
+    },
+    getUsersByRoleId(roleId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield libs_1.prisma.user.findMany({ where: { roleId }, orderBy: { createdAt: 'desc' } });
         });
     },
     getUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield libs_1.prisma.user.findUnique({ where: { id } });
+        });
+    },
+    getUserByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield libs_1.prisma.user.findUnique({ where: { email } });
+        });
+    },
+    getUserByRoleId(roleId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield libs_1.prisma.user.findFirst({ where: { roleId } });
         });
     },
     createUser(data) {

@@ -4,7 +4,7 @@ import { prisma } from '../libs'
 
 export const roleService = {
   async getAllRole() {
-    return await prisma.role.findMany({ orderBy: { id: 'desc' } })
+    return await prisma.role.findMany({ orderBy: { createdAt: 'desc' } })
   },
 
   async getRole(id: string) {

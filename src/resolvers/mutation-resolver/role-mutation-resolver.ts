@@ -1,4 +1,4 @@
-import { permissionService, rolePermissionService, roleService } from '../../services'
+import { permissionService, rolePermissionService, roleService, userService } from '../../services'
 import { authenticationMiddleware } from '../../middlewares'
 import { BadRequestError, NotFoundError } from '../../libs'
 import { RoleInput } from '../../types'
@@ -49,6 +49,9 @@ export const roleMutationResolver = {
 
     const existingRole = await roleService.getRole(id)
     if (!existingRole) throw new NotFoundError(`Role with id ${id} not found`)
+
+    const userWithThisRole = await userService.getUserByRoleId(id)
+    if (userWithThisRole) throw new BadRequestError(`Role with id ${id} is still in use by user`)
 
     await rolePermissionService.deleteRoleFromAllPermission(id)
 
